@@ -52,6 +52,8 @@ def get_reading():
 
 					#when we have a line with a period, assume that is two sentences and don't read past first period
 					email_body += line.split(".")[0] + "."
+				else:
+					email_body += line
 
 			else:
 
