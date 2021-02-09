@@ -57,8 +57,9 @@ def get_reading():
 
 			else:
 
-				email_body += line
-				bookmarked_line +=1 
+				email_body+=line
+
+			bookmarked_line += 1
 
 
 	except IndexError as exception: #if we try to read an index that does not exist (past the last index), we are done with the book
