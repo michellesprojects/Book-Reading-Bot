@@ -14,7 +14,7 @@ email_subject = "Daily Reading!"
 lines_per_email = 3 #amount of lines to include per email reading
 bookmarked_line = 0 #last read line
 book_complete = False #when this is True, terminate program
-book = "testbook.txt"
+book = "lg.txt"
 
 #open the book and save the lines into an array
 with open(book, "r") as file:
@@ -35,31 +35,30 @@ def get_reading():
 
 			#check first line of reading for a disjoint sentence
 			if bookmarked_line != 0 and i == 0 and "." in line:
+	
 			#bookmarked_line != 0, if first line of text, dont worry about it being disjoint, it wont be
 			#i == 0 and "." in line, if first line of this reading block, check if there is a period, if there is one assume it is a disjoint sentence and only take second half
-				email_body += line.split(".",1)[1]
-				bookmarked_line+=1
+				email_body += line.split(".",1)[1].strip()
+				bookmarked_line += 1
+				
 
-			elif i == lines_per_email - 1: #last line
-
-				if "." not in line:
-
+			elif i == lines_per_email-1: #last line
 					#keep going till we find a period, so we can end the reading gracefully
-					while "." not in line:
-						email_body += line
-						bookmarked_line += 1
-						line = book_lines[bookmarked_line]
+				while "." not in line:
+					email_body += line
+					bookmarked_line += 1
+					line = book_lines[bookmarked_line]
 
 					#when we have a line with a period, assume that is two sentences and don't read past first period
-					email_body += line.split(".")[0] + "."
-				else:
-					email_body += line
-
+				email_body += line.split(".")[0] + "."
+				
+					
 			else:
 
-				email_body+=line
+				email_body+=line			
+				bookmarked_line += 1
 
-			bookmarked_line += 1
+				
 
 
 	except IndexError as exception: #if we try to read an index that does not exist (past the last index), we are done with the book
@@ -92,16 +91,10 @@ def send_email():
 
 schedule.every().day.at("06:26").do(send_email)
 
+
 while True:
 	schedule.run_pending()
 	time.sleep(1)
-
-
-
-
-
-
-
 
 
 
