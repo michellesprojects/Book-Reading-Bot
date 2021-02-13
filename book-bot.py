@@ -37,7 +37,7 @@ def get_reading():
 			if bookmarked_line != 0 and i == 0 and "." in line:
 			#bookmarked_line != 0, if first line of text, dont worry about it being disjoint, it wont be
 			#i == 0 and "." in line, if first line of this reading block, check if there is a period, if there is one assume it is a disjoint sentence and only take second half
-				email_body += line.split(".")[1].strip()
+				email_body += line.split(".",1)[1]
 				bookmarked_line+=1
 
 			elif i == lines_per_email - 1: #last line
