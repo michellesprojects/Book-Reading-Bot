@@ -12,7 +12,7 @@ email_password = "password-here" #password of throwaway account
 to_email = "recipient-email-account-here@gmail.com"
 email_subject = "Daily Reading!"
 
-lines_per_email = 3 #amount of lines to include per email reading
+lines_per_email = 300 #amount of lines to include per email reading
 bookmarked_line = 0 #last read line
 book_complete = False #when this is True, terminate program
 book = "lg.txt"
